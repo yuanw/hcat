@@ -16,6 +16,7 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
+    - base
     - hcat
 
 tests:
