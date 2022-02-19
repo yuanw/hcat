@@ -8,7 +8,7 @@ library:
   source-dirs: src
 
 executables:
-  haskell-hello:
+  hcat:
     source-dirs: app
     main: Main.hs
     ghc-options:
