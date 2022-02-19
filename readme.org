@@ -1,0 +1,6 @@
+#+TITLE: Readme
+
+
+hcat example from https://www.pragprog.com/titles/rshaskell/effective-haskell/
+
+nix run .# -- foo 123

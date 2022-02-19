@@ -1,4 +1,6 @@
 module HCat where
 
+import qualified System.Environment as Env
+
 runHCat :: IO ()
-runHCat = return ()
+runHCat = Env.getArgs >>= print
