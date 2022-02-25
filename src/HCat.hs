@@ -1,6 +1,9 @@
+{-# LANGUAGE LambdaCase #-}
 module HCat where
 
 import qualified System.Environment as Env
+import qualified Control.Exception as Exception
+import qualified System.IO.Error as IOError
 
 handleArgs :: IO (Either String FilePath)
 handleArgs =
@@ -12,10 +15,12 @@ handleArgs =
             _ -> Left "mutiple args"
 
 runHCat :: IO ()
-runHCat =
-  handleArgs >>= displayMessage
+runHCat = Exception.catch
+  (handleArgs
+   >>= \case
+      Left err -> putStrLn $ "Error processing: " <> err
+      Right fname -> readFile fname >>= putStrLn)
+  handleErr
   where
-    displayMessage parsedArgument =
-      case parsedArgument of
-        Left errMessage -> putStrLn $ "Error: " <> errMessage
-        Right fileName -> putStrLn $ "Opening file: " <> fileName
+    handleErr :: IOError -> IO ()
+    handleErr e = putStrLn "I ran into an error" >> print e
