@@ -29,8 +29,16 @@
             })
           ];
         };
-        myHaskellEnv = (pkgs.haskellPackages.ghcWithHoogle
-          (p: with p; [ hcat cabal-install ormolu hlint hpack brittany haskell-language-server ]));
+        myHaskellEnv = (pkgs.haskellPackages.ghcWithHoogle (p:
+          with p; [
+            hcat
+            cabal-install
+            ormolu
+            hlint
+            hpack
+            brittany
+            haskell-language-server
+          ]));
 
       in {
         packages = { hcat = pkgs.hcat; };
